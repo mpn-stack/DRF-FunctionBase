@@ -13,6 +13,7 @@ def product_info(request):
     if request.method=='POST':
         serializer=ProductSerializer(data=request.data)
         if serializer.is_valid():
+            serializer.save()
             return Response (serializer.data)
     return Response({'message':'failed'})
 
@@ -26,6 +27,7 @@ def product_info_model_base(request):
     if request.method=='POST':
         serializer=ProductSerializerModelBase(data=request.data)
         if serializer.is_valid():
+            serializer.save()
             return Response (serializer.data)
     return Response({'message':'failed'})
 
