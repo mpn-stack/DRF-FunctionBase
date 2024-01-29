@@ -20,7 +20,7 @@ class ProductSerializer(serializers.Serializer):
     
 
 class ProductSerializerModelBase(serializers.ModelSerializer):
-    description = serializers.SerializerMethodField()
+    #description = serializers.SerializerMethodField()
     class Meta:
         model=Product
         fields='__all__'
