@@ -8,9 +8,9 @@ from rest_framework.decorators import api_view
 @api_view(['GET','POST'])
 def product_info(request):
     if request.method=='GET':
-        #queryset = Product.objects.all()
-        queryset= {'message':'it is just get method'}
-        return Response(queryset)
+        queryset=Product.objects.all()
+        serializer=ProductSerializer(queryset, many=True).data
+        return Response(serializer)
     if request.method=='POST':
         serializer=ProductSerializer(data=request.data)
         if serializer.is_valid():
