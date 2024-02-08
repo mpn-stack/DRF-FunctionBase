@@ -13,10 +13,26 @@ class ProductSerializer(serializers.Serializer):
 
         
     def get_description(self, obj):
+        """
+        Create description using obj.name.
+        """
         return f'the %s is grate!' % obj.name
     
     def create(self, validated_data):
+        """
+        Delete an existing `Product` instance.
+        """
         return Product.objects.create(**validated_data)
+    
+    def update(self, instance, validated_data):
+        """
+        Update and return an existing `Product` instance, given the validated data.
+        """
+        instance.name = validated_data.get('name', instance.name)
+        instance.count = validated_data.get('count', instance.count)
+        instance.company_name = validated_data.get('company_name', instance.company_name)
+        instance.save()
+        return instance
     
 
 class ProductSerializerModelBase(serializers.ModelSerializer):
@@ -26,4 +42,7 @@ class ProductSerializerModelBase(serializers.ModelSerializer):
         fields='__all__'
     
     def get_description(self, obj):
+        """
+        Create description using obj.name.
+        """
         return f'the %s is grate!' % obj.name
