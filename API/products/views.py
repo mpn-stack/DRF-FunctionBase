@@ -57,7 +57,7 @@ def product_info_model_base(request, pk=None):
         if serializer.is_valid():
             serializer.save()
             return Response (serializer.data, status=status.HTTP_201_CREATED)
-        
+                
     if request.method=='DELETE':
         if pk is not None:
             instance=get_object_or_404(Product, pk=pk)
